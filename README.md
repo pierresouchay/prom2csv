@@ -1,5 +1,8 @@
 # prom2csv: Export prometheus metrics into CSV
 
+[![PyPI - Version](https://img.shields.io/pypi/v/prom2csv)](https://pypi.org/project/prom2csv/)
+[![License](https://img.shields.io/pypi/l/prom2csv)](https://raw.githubusercontent.com/pierresouchay/prom2csv/main/LICENSE)
+
 A hi-performance tool to export prometheus metrics in a CSV file.
 
 It will help you fetching the last value of metrics extracted from prometheus, including computed
@@ -9,11 +12,15 @@ tools.
 It also supports generating IDs based on labels of metrics (see `--row-id-expression`), so tools
 can compare values or override existing ones easily => one metric is always named the same way.
 
-## Requirements
+## Install / Requirements
 
-It just requires `requests` => `pip install requests`
+You can install it on any system supporting python 3.9+, it's only requirement is `requests`.
 
-You can install it with `pip install prom2csv` in any python environment (Python 3.9+)
+```bash
+pip install prom2csv
+```
+
+You can then run it with `prom2csv` in the terminal.
 
 ## Usage
 ```
