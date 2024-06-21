@@ -55,7 +55,7 @@ options:
 ## Get the size of the table user on all Postgresql instance in env=prod
 
 ```
-./prom2csv.py 'pg_stat_user_tables_n_live_tup{relname="user",env="prod"}'    
+prom2csv 'pg_stat_user_tables_n_live_tup{relname="user",env="prod"}'    
 id,timestamp,value,datname,duty,env,hostname,instance,job,relname,schemaname,tenant_id,type
 pg_stat_user_tables_n_live_tup,2024-06-05 09:54:09.274000+00:00,180,pgdb,always,prod,prod1005-01,prod1005-01.example.org:39187,postgres,user,public,1005,app
 pg_stat_user_tables_n_live_tup,2024-06-05 09:54:09.274000+00:00,107,pgdb,always,prod,prod1006-01,prod1006-01.example.org:39187,postgres,user,public,1006,app
@@ -64,7 +64,7 @@ pg_stat_user_tables_n_live_tup,2024-06-05 09:54:09.274000+00:00,107,pgdb,always,
 ### Same, but set the name of instance as first row and hide some rows
 
 ```bash
-./prom2csv.py 'pg_stat_user_tables_n_live_tup{relname="user",env="prod"}' \
+prom2csv 'pg_stat_user_tables_n_live_tup{relname="user",env="prod"}' \
   --column-name-mapping id my_instance \
   --row-id-expression 'instance' \
   --column-name-mapping tenant_id my_customer \
@@ -79,5 +79,5 @@ prod1006-01.example.org:39187,107,pgdb,prod,prod1006-01,prod1006-01.example.org:
 ## List all machines/partitions in dev or prod with partition usage > 50%
 
 ```
-./prom2csv.py --column-name-mapping id instance --row-id-expression 'instance' '(node_filesystem_free_bytes{env=~"dev|prod",device!~"rootfs",fstype!="tmpfs"} / node_filesystem_size_bytes{env=~"dev|prod",device!~"rootfs",fstype!="tmpfs"}) < 0.5'
+prom2csv --column-name-mapping id instance --row-id-expression 'instance' '(node_filesystem_free_bytes{env=~"dev|prod",device!~"rootfs",fstype!="tmpfs"} / node_filesystem_size_bytes{env=~"dev|prod",device!~"rootfs",fstype!="tmpfs"}) < 0.5'
 ```
